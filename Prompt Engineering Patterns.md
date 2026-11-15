@@ -1,0 +1,26 @@
+- Input Customization patterns: techniques leveraging specific prompt contents toward output goals
+	- Constraint Pattern: explicitly define what to include and exclude in output
+	- Meta Language Creation Pattern: organize prompts into dedicated sections, to suit specific goals
+	- Template Pattern: define re-usable prompts for common, yet customizable, use cases
+		- e.g., ROLE/TASK/CONTEXT/CONSTRAINTS
+- Output Customization patterns: shift focus of techniques to outputs, rather than prompt contents
+	- Persona Pattern: instruct an LLM to operate with the knowledge base and terminology of a specific profession
+	- Audience Persona Pattern: instruct an LLM to tailor output to land with a specific audience
+	- Recipe Pattern: instruct an LLM to organize responses in step-by-step fashion
+	- Format Specification Pattern: instruct an LLM to organize responses into a specific format
+- Error Identification and Prompt Improvement patterns: refine LLM outputs with targeted techniques
+	- Fact Check Pattern: ask an LLM to cite sources
+	- Question Refinement Pattern: layer constraints and requirements on top of initial output from an LLM
+	- Alternative Approaches Pattern: ask an LLM for additional perspectives or recommendations
+	- Iteration Pattern: similar to the Question Refinement Pattern, ask an LLM to enhance output with additional specifics
+- Interaction and Context Control patterns: extend conversations across multiple messages and even sessions
+	- Conversation Management Pattern: extend a conversation across multiple messages
+	- Workflow Pattern: decompose a complex task into simpler steps, with a sequential relationship
+	- Context Preservation Pattern: refer back to key contextual info throughout a conversation
+	- Flipped Interaction Pattern: instruct an LLM to ask the user questions for purposes like clarification
+	- Menu Action Pattern: define "reusable shortcuts for common requests"
+- Format for a prompt library:
+	- Category: type of prompt (root, sequential, tone adjustment, optimized, or template)
+	- Prompt/template: the actual prompt, with placeholders in brackets if a template
+	- Use case: when to use
+	- Notes: tips, such as best practices

@@ -1,0 +1,43 @@
+- Major providers like Snowflake and Databricks have moved away from data platform vendors to agent platform vendors
+	- Direct consumers of data have become agents, not people
+	- As such, "artifact" needs have shifted from UI's, documentation, and visual workflows to API's, Skills, context, policies, and "structural feedback"
+- Components of the agent harness technical architecture
+	- Context input and memory layer
+	- Shorter-term memory (recent messages)
+	- Long-term memory (knowledge base)
+	- File system storage
+	- Orchestration and planning
+		- Workflow controller
+		- Planner
+		- Supervisor agent
+	- Execution and observation layer
+		- Tool execution
+		- Result processing
+		- Feedback loops
+	- Tool interpretation layer
+		- DB's
+		- API's
+		- External services
+- Types of evidence supporting production delivery
+	- Outcome: actual value added to outcome
+	- Process: explainability, traceability, and recoverability within processes
+	- Governance: delineation and records of who can and did execute or make decisions
+- Layers of the agentic data stack
+	- Deterministic execution: the data itself, along with the logic to run and a platform on which to run it
+	- Data engineering harness: guardrails and supporting files facilitating agent operation
+		- e.g., Skills, permission checks, context injection, validation, and human intervention
+	- Semantic and knowledge: business rules, definitions, and metadata adding context
+	- Agentic orchestration control: translation of goals into execution governed by boundaries
+	- Business intent: business context such as timelines, constraints, acceptance criteria, and approval conditions
+- Engineering Skills should encompass E2E engineering intent, context/policy, validation, and recovery mechanisms
+- New categories of design for DE's to handle:
+	- Context: business/data context allowing agents to understand the enterprise
+	- Skill: reusable data capabilities for agents to invoke
+	- Policy: rules and constraints to control and trust agents
+	- Evaluation: evaluation criteria and mechanisms to measure agent performance
+	- Agent engineering: broad oversight of an engineering system and delivery process
+- Best activities to start with (routinized and repeatable):
+	- Data discovery, metadata enrichment, and schema understanding (more reading than writing)
+	- SQL writing, rule validation, and DAG assembly
+	- Integration tasks, parameter orchestration, and environment checks
+	- Log diagnosis, repair recommendations, and retry orchestration

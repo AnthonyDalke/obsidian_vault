@@ -1,0 +1,11 @@
+- Essential components of AI workflows
+	- (Understand) **intent**
+	- (Assess) **impact**
+	- (Reason about) **steps** (to accomplish objectives)
+- Questions to validate changes made by agents
+	- What changed?
+	- Why did it change?
+	- Did anything break?
+	- If so, what impact did the break have?
+	- Did the changes achieve their objectives?
+- Ideally, confidence should scale with output from agents

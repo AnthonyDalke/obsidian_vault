@@ -1,0 +1,13 @@
+- Context Poisoning: when hallucinations or other incorrect info make their way into context and lead LLM's astray
+	- Example of simply incorrect guard bribe in Pokemon on GB vs. GBA
+- Context Distraction: when long/large contexts distract LLM's from actual instructions and tasks
+	- Example of asking model to return responses in Russian, then actually providing question and answer examples in French, causing models to return answers more in French than Russian
+- Context Confusion: when longer/larger contexts degrade the quality of model responses
+	- Example of repeating or referring to past responses rather than considering novel approaches
+- Context Clash: when more recent context conflicts with previous context
+	- Example of guard bribe in Pokemon on GBA conflicting with GB
+- Context engineering tactic overview (composable/combinable)
+	- Context Augmentation: RAG and skills to incorporate relevant info
+	- Context Pruning: iteratively assessing whether context matters and deleting if not
+	- Context Summarization: subset relevant history, then summarize into briefer context
+	- Context Offloading: storing context outside an agent's window

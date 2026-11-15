@@ -1,0 +1,20 @@
+- Semantic layers act as a "translation medium" between data and meaning or machines and humans, even between machines (DB's and AI agents)
+- Key purposes:
+	- "Describe data's business meaning"
+	- Delineate data's "relationships with other data"
+	- Define "rules data must adhere to"
+- AI agents leverage assets previously used less, if at all
+	- Metadata for semantic search
+	- Knowledge graphs
+- Ideal components of a semantic layer:
+	- Usage constraints (e.g., PII/HRCI)
+	- "Permitted data combinations"
+	- Supporting info for compliance audits
+	- Subjective judgments of data quality
+	- "Permitted exceptions to business rules"
+- Recommended best practices to build a semantic layer
+	- Focus first on priority data assets
+	- Craft taxonomies to reconcile naming conventions
+	- Construct knowledge graph to "identify common entities" across data assets
+	- Assign an owner to govern
+	- Harness AI to generate missing metadata, cleanse data, and aid data classification 

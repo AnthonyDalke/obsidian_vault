@@ -1,0 +1,4 @@
+- Verifier-Critic Architecture: designated verifier agents check what others produce
+- Deterministic Compute Governance: additional governance layer of agents enforces limits on compute
+- Escalation-Oriented Architecture: define criteria where humans should step in and review
+- Deterministic Safeguard Topologies: a different additional governance layer evaluates decisions and actions

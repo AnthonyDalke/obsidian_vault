@@ -1,0 +1,9 @@
+- Tools resemble functions - reusable actions, but with two key distinctions
+	- The agent, not a human, decides when to call them
+	- They don't need their functionality defined for the agent to call them
+- Instead, the agent needs the tool name, a natural language description of the functionality, and the names and types of the args
+- Agents decide whether to run tools by reading the descriptions once a user send the agent a request with a list of tools
+- Contents of an effective description
+	- Explanation of what a tool does
+	- Guidance on when to use a tool
+	- Delineation of import requirements

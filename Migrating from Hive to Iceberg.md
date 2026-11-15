@@ -1,0 +1,27 @@
+- Original architecture centered on source -> lake -> consumption
+	- Data processing engines -> Glue catalog -> Hive partitions -> parquet on S3 (similar to L&G)
+	- Partitions like year, then month
+- AWS S3 Tables, built on Iceberg, prompted the switch
+- Rather than fundamentally storing data differently than formats like parquet, Iceberg builds _on top of_ those formats, with metadata disseminating attributes
+	- Table schemas
+	- Partition definitions
+	- Snapshot history
+	- File-level stats
+	- Data file locations
+- Iceberg stores metadata separately from actual data
+- In addition to metadata, manifest files contain stats and other details on data files, while manifest lists enumerate the manifest files within snapshots
+- Chain of file consumption, with Glue Catalog as the "entry point"
+	- **Glue Catalog** reads **metadata.json**, which reads the **current snapshot**, which reads the **manifest list**, which reads **manifest files**, which reads the actual **parquet files**
+- Metadata files get created whenever changes occur to tables
+- Snapshots enable "time travel" between data versions
+- Generally speaking, metadata files contain higher-level data on files, such as snapshot info, whereas manifests break out more granular details like position values and column min/max values
+	- Those details in manifests facilitate query pruning
+- Iceberg tackles schema evolution by assigning unique permanent identifiers to columns (integer identifiers)
+	- Columns do not get removed from historical data files
+	- Queries consider column ID's listed in metadata, so references to now-removed columns simply get ignored in recent files and included in historical files
+		- Similarly, references to newly added columns simply get excluded from historical files, when metadata indicates they don't exist
+		- NULLs get returned for the columns lacking history
+- Iceberg also confers advantages with data updates and time travel
+	- Data updates: copy-on-write (CoW) updates only necessary records, while merge-on-read (MoR) stores existing and new data separately (new in metadata files), waiting to reconcile until a query demands it
+	- Time travel: snapshot history creates a clean "audit trail"
+- One major drawback/trade-off of Iceberg: the "small file problem" - large numbers of small files can impact query performance, requiring compaction of data, metadata, and snapshot files

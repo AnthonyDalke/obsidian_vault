@@ -1,0 +1,48 @@
+- **Conceptual model** focuses on entities and their relationships
+	- First steps of translating business activities into data
+	- Key value-adds:
+		- Embedding stakeholder knowledge and user experience
+		- Establishing common/shared language
+		- Promoting early stakeholder engagement/buy-in
+- **Logical model** begins translating the conceptual model into more technical terms
+	- Identifies attributes for entities depicted in the conceptual model
+	- Also identifies keys to signify uniqueness or relationships (joins) between entities, along with natures of relationships
+		- 1:1
+		- 1:N
+		- N:N
+	- Determines normalization
+	- Key value-adds:
+		- "Rubber meets the road" moment, where higher-level conceptual model becomes evaluated against technical constraints and considerations
+- **Physical model** implements the logical model within the selected platform or engine
+	- Enacts datatypes, normalization, keys, indexes/partitions, and constraints
+	- Key value-adds:
+		- Actually creating assets for users
+		- Optimizing for performance
+- Characteristics of normalization levels
+	- **1NF**: no repeated values within a column of a record
+	- **2NF**: no repeated values within a composite key
+	- **3NF**: no relationships between values and non-primary keys ("separation of concerns")
+- Dimensional modeling (Kimball) steps
+	1. Identify a business process to model
+	2. Identify the lowest level of grain in the data
+	3. Identify dimensions to incorporate as descriptors
+	4. Identify facts to capture activities and actions
+- Advantages of dimensional modeling
+	- Easy for users to grasp and understand
+	- Flexibility toward changes with S.C.D.
+- Dimensional models can get implemented in a variety of ways
+	- Star schema
+	- Snowflake schema (layers normalization onto dimensions)
+	- Data vault
+	- Dimensional mart
+- Levels of S.C.D.
+	- L1: simple overwrites
+	- L2: create new records to capture updated data, with a time column and current indicator to signify freshness
+	- L3: create a new column to capture new values
+	- L4: establish a history table, then a current version (or archive)
+- Types of fact tables
+	- Transactional: most common - capture each activity
+	- Periodic snapshot: capture activity only at points in time
+		- Additive within but not across points in time
+	- Accumulating snapshot: capture activity with a record that gets shared across tables
+	- Factless: capture aggregate measures for dimensions, primarily for T/F recognition of whether something occurred

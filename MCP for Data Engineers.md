@@ -1,0 +1,15 @@
+- MCP serves the core purpose of extending agent tools beyond a single machine or repo
+- In other words, MCP functions as an interface, conduit, or discoverability layer between agents and tools
+	- Agent still decides which tool(s) to call
+	- MCP can even work on top of API's, by interpreting API's to enable models/agents to decipher
+- Roles in the MCP architecture:
+	- **MCP host**, such as Claude or VS Code, creates an **MCP Client** to act as the connection to an **MCP Server**, which exposes the tools, resources, and prompts to the host through the client
+	- DE's focus on building the MCP server
+- JSON-RPC ("data layer") protocol delivers "primitives" over either a local or remote transport layer
+- Resources effectively augment tools with context
+	- e.g., A resource can surface a DB schema, which helps call the DB with a tool
+- Prompts function differently than user prompts, providing agents "recipes" of steps or actions to take
+- In addition to enabling sharing, MCP also protect security, by keeping connection strings and secrets within the MCP server
+- The more tools a server considers, the more tokens it consumes
+- Best practice: parameterize queries as much as possible
+	- Also, enforce read-only access as much as possible

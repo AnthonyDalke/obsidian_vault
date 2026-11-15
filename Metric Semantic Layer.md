@@ -1,0 +1,23 @@
+- Article from Lyft engineering blog
+- Houses both natural language descriptions and authoritative SQL metric calculations
+- Implemented as a Python package
+- Key components
+	- YAML config file defining:
+		- Operational owner (group)
+		- Data sources (table name)
+		- Jinja SQL for view
+		- Time attribute and granularity
+		- Dimension list (name and definition)
+		- Metric list (name, description, type, owner, and agg function)
+	- API for metadata
+	- "Query builder"
+- Data stored in a lakehouse (e.g., Trino, Redshift, Clickhouse)
+- Downstream consumption comes from a metric query UI, dashboards, ML models, data catalogs, and DQ monitoring tools
+- A metrics MCP facilitates use by AI agents and skills
+- Metrics should get used in at least two places to warrant inclusion in the semantic layer
+- Ownership falls to both a business and operational owner
+	- Should consist of teams, not individuals
+	- The business owner determines definitions and usage guidelines
+	- The operational owner ensures a steady supply of data for metrics
+	- Both sides need to weigh in on changes
+- Call metrics defined in the layer with Python functions

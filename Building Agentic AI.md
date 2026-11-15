@@ -1,0 +1,46 @@
+- Words decompose into tokens - smaller components carrying semantic meaning
+	- Word-to-token maps get determined when architecting and training a model, then remain static unless a model developer specifically changes them
+- Autoregressive vs. autoencoding models
+	- Autoregressive (by far most common) predict next words based on vocabulary used for training
+	- Autoencoding essentially "fill in a blank" based on surrounding context and work best for classification (e.g., sentiment analysis) or machine-encoding raw text
+- As a model grows in parameter count, it accumulates weights, which lead to better accuracy but at the cost of additional memory and compute requirements
+- Context window encompasses the tokens a model can process in both input and output
+	- Context window size generally depends on a model parameter count
+	- Context amounts to short-term memory - gone once a thread (conversation) ends
+- "Needle in the Haystack" context problem: LLM's tend to "forget" or "overlook" context toward the middle of their window
+	- The architecture of transformers leads to a form of recency (and, to a lesser extent, primacy) bias
+- RAG aims to address the Needle in the Haystack problem by *retrieving* context before *augmenting* a prompt with the new content
+- Construct prompts with more static context first and more dynamic context later
+	- Rule of thumb: if one piece of context depends on another, it should go below or come after the other (static -> dynamic)
+- Proposed prompt structure:
+	- Goal
+	- Guardrails
+	- Documentation
+	- Live context
+	- Current ask/request
+- Most common inference parameters to tune:
+	- `temperature`: float that controls randomness vs. determinism of responses
+		- Lower (<1) = more deterministic
+	- `top_k`: integer that restricts the number of top tokens the model picks from when generating text
+	- `top_p`: float that lends a more probabilistic approach to considering tokens, by totaling the probabilities of the top tokens until they reach a certain probability threshold
+- Prompt caching reduces processing time and token usage, by saving the results of previous prompts and responses
+	- When tokens change, the cache breaks
+- Structured Outputs enable LLM's to return responses in a specific JSON format, which, in turn, enables integration with programming interfaces like Python classes
+- Tool calls act as conduits between LLM's and external environments, such as web searches
+	- However, the actual external communication occurs not by the LLM itself but the broader model pipeline
+- ReAct agents combine reasoning and agents (hence, the name) to interpret user prompts, determine whether and what kinds of agents to use, interact with the agents, and return findings to the user
+- Components of RAG:
+	- Indexer: transforms raw text data into vectors stored in DB's
+	- Retriever: acts as a conduit to the vector data
+	- Generator: the LLM itself
+- When a user submits a query, RAG harnesses embedding (cosine) similarity to identify applicable information/data to consider for the query
+- Chain-of-thought reasoning facilitates the conversion of the prompt into the actual query, considering the "evidence" (i.e., embedding similarity) identified in the previous step
+- Once the query becomes finalized, it gets passed to the "DB node" to run and return a response
+- Vector DB's promote text storage and retrieval, with embeddings as the "search key", based on similarity
+	- Text gets embedded, and then embeddings get searched for similarity
+		- The data stored in vector DB's effectively provide "JIT" context for LLM's to consider when generating responses
+		- That context can enable natural language responses back to the user or SQL to then execute before generating a response for the user (depends on use case)
+	- LLM's end up reading the text associated with embeddings
+	- Embeddings get indexed for search and retrieval
+- The concept of state acts as a fundamental building block of LangGraph
+	- Gets passed around as imput to each step, with the output reflecting any changes occurring during the steps
